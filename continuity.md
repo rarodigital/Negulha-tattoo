@@ -1,28 +1,26 @@
 # continuity.md — Histórico de Sincronização (Negulha Tattoo)
 
-## [10/07/2026] — Bot — Integrações conectadas ✅✅✅
+## [10/07/2026] — Bot — Agente WhatsApp (n8n) no ar em MODO TESTE ✅
 
-Todas as integrações testadas e funcionando:
+Recepção com IA funcionando ponta a ponta (workflow "Sendm", id 4kuw3Im6Z8X7SeO3):
+- Webhook Evolution (path /webhook/sendm, formato LID: número real em data.key.senderPn)
+- Cliente novo → cria lead na aba Leads + envia menu de boas-vindas
+- Cliente recorrente → AI Agent (Groq llama-3.1-8b) + memória Postgres no Supabase (pooler IPv4)
+- Grupos/status ignorados (filtro @g.us); fromMe ignorado
+- Resposta enviada via Evolution (instância NGL)
 
-**GitHub** ✅ commit via API (repo rarodigital/Negulha-tattoo)
+Estado: ATIVO em modo teste (allowlist só 5521995816571). LLM = Groq (grátis; Gemini free tier estourou).
 
-**Google Sheets** ✅ (Service Account nglauto / negulha-asistente@nglauto.iam.gserviceaccount.com)
-- Planilha "Planilha Base" — 7 abas: Leads, Agendamentos, Histórico de Mensagens, Estoque, Histórico de Postagens, Métricas, Financeiro
-- Leitura confirmada (Leads e Financeiro)
+Pendências:
+- Sair do modo teste (remover allowlist) p/ atender clientes reais
+- Religar tools do agente: Notificar_Admin (Tool Workflow) + Ler_Agenda (service account HTTP)
+- Testar rota do dono (!orcamento / !pago)
+- Ligar/testar Fluxo B (resumo diário 23:55 -> Telegram grupo)
+- Segurança: rotacionar GitHub PAT + senha Supabase
 
-**Google Calendar** ✅ social.adaltovieira@gmail.com (America/Sao_Paulo) — acesso de escrita liberado
+Infra/credenciais n8n: googleApi (service account) Sheets; Postgres pooler ssl (Supabase); Groq; Telegram.
+Docs técnicos completos no workspace: carioquinha-dev/n8n-flows/README.md + build_flows.py.
 
-**n8n** ✅ https://n8n.theroninstituto.com.br
-- Workflow em uso: "Sendm" (id 4kuw3Im6Z8X7SeO3) — webhook POST /webhook/sendm
-- ATENÇÃO: workflow está INATIVO; precisa ser ativado no n8n pra o webhook de produção responder
-
-**Estado financeiro real (da planilha):** Caixa R$670,22 (não R$671)
-
-**Próximos passos:**
-- Ativar workflow Sendm no n8n (Adalto)
-- Rodar os 4 testes de escrita do doc 5 (com confirmação do Adalto antes de escrever na planilha real)
-
-**Status:** 🟢 Totalmente conectado (leitura). Escrita pronta, aguardando OK pra testar.
+## [10/07/2026] — Bot — Integrações conectadas ✅ (Sheets, Calendar, n8n, GitHub)
 
 ## [10/07/2026] — Bot — Sincronização inicial ✅
-Contexto carregado dos docs 1, 2 e 5. Repo e token OK.
